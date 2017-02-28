@@ -98,6 +98,19 @@
             $this->assertEquals($test_course, $result);
         }
 
+        function testUpdate()
+        {
+            //Arrange
+            $name = "Defense Against the Dark Arts";
+            $test_course = new Course($name);
+            $test_course->save();
+            $new_name = "Charms";
+
+            $test_course->update($new_name);
+
+            $this->assertEquals($new_name, $test_course->getName());
+        }
+
 
     }
 
