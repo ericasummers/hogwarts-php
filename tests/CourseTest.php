@@ -16,9 +16,12 @@
 
     class CourseTest extends PHPUnit_Framework_TestCase
     {
-        //Arrange
-        //Act
-        //Assert
+        function test__()
+        {
+            //Arrange
+            //Act
+            //Assert
+        }
 
 
     }

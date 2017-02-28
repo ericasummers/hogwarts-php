@@ -17,11 +17,16 @@
     class StudentTest extends PHPUnit_Framework_TestCase
     {
 
+        protected function tearDown()
+        {
+            Student::deleteAll();
+        }
+
         function testGetName()
         {
             //Arrange
             $name = "Harry Potter";
-            $enrollment_date = "2-02-2000";
+            $enrollment_date = "2/02/2000";
             $test_student = new Student($name, $enrollment_date);
 
             //Act
@@ -35,7 +40,7 @@
         {
             //Arrange
             $name = "Harry Potter";
-            $enrollment_date = "2-02-2000";
+            $enrollment_date = "2/02/2000";
             $test_student = new Student($name, $enrollment_date);
 
             //Act
@@ -44,6 +49,23 @@
 
             //Assert
             $this->assertEquals($new_name, $test_student->getName());
+        }
+
+        function testSaveAndGetAll()
+        {
+            $name = "Harry Potter";
+            $enrollment_date = "2/02/2000";
+            $test_student = new Student($name, $enrollment_date);
+            $test_student->save();
+
+            $name2 = "Hermione Granger";
+            $enrollment_date2 = "04/01/2000";
+            $test_student2 = new Student($name2, $enrollment_date2);
+            $test_student2->save();
+
+            $result = Student::getAll();
+
+            $this->assertEquals([$test_student, $test_student2], $result);
         }
 
 
