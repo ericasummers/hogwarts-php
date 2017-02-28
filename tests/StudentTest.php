@@ -86,8 +86,24 @@
 
             //Assert
             $this->assertEquals($test_student, $result);
+        }
+
+        function testUpdate()
+        {
+            //Arrange
+           $name = "Harry Potter";
+           $enrollment_date = "2/02/2000";
+           $test_student = new Student($name, $enrollment_date);
+           $test_student->save();
+           $new_name = "James Potter";
+
+           //Act
+           $test_student->update('name', $new_name);
+           $result = $test_student->getName();
 
 
+           //Assert
+           $this->assertEquals($new_name, $result);
         }
 
 

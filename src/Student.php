@@ -77,6 +77,13 @@
 
         }
 
+        function update($property, $value)
+        {
+            $GLOBALS['DB']->exec("UPDATE students SET {$property} = '{$value}' WHERE id = {$this->getId()};");
+            $this->{$property} = $value;
+
+        }
+
 
 
 
