@@ -20,6 +20,32 @@
         {
             $this->name = (string) $new_name;
         }
+
+        function save()
+        {
+            $GLOBALS['DB']->exec("INSERT INTO courses (name) VALUES ('{$this->getName()}');");
+            $this->id = $GLOBALS['DB']->lastInsertId();
+        }
+
+        static function getAll()
+        {
+            $returned_courses = $GLOBALS['DB']->query("SELECT * FROM courses;");
+            $courses = array();
+            foreach($returned_courses as $course)
+            {
+                $name = $course['name'];
+                $id = $course['id'];
+                $new_course = new Course($name, $id);
+                array_push($courses, $new_course);
+            }
+
+            return $courses;
+        }
+
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM courses;");
+        }
     }
 
  ?>

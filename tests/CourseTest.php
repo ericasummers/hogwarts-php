@@ -16,6 +16,12 @@
 
     class CourseTest extends PHPUnit_Framework_TestCase
     {
+
+        protected function tearDown()
+        {
+            Course::deleteAll();
+        }
+
         function testGetName()
         {
             //Arrange
@@ -25,6 +31,53 @@
 
             //Act & Assert
             $this->assertEquals($test_course->getName(), $name);
+        }
+
+        function testSave()
+        {
+            //Arrange
+            $name = "Defense Against the Dark Arts";
+            $test_course = new Course($name);
+
+            //Act
+            $test_course->save();
+
+            //Assert
+            $this->assertEquals([$test_course], Course::getAll());
+
+        }
+
+        function testGetAll()
+        {
+            //Arrange
+            $name = "Defense Against the Dark Arts";
+            $test_course = new Course($name);
+            $test_course->save();
+
+            $name2 = "Potions";
+            $test_course2 = new Course($name2);
+            $test_course2->save();
+
+
+            //Act & //Assert
+            $this->assertEquals([$test_course, $test_course2], Course::getAll());
+        }
+
+        function testDeleteAll()
+        {
+            //Arrange
+            $name = "Defense Against the Dark Arts";
+            $test_course = new Course($name);
+            $test_course->save();
+
+            $name2 = "Potions";
+            $test_course2 = new Course($name2);
+            $test_course2->save();
+
+            Course::deleteAll();
+
+            //Act & //Assert
+            $this->assertEquals([], Course::getAll());
         }
 
 
