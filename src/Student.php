@@ -1,9 +1,9 @@
 <?php
     class Student
     {
-        private $id;
         private $name;
         private $enrollment_date;
+        private $id;
 
         function __construct($name, $enrollment_date, $id = null)
         {
@@ -34,7 +34,7 @@
 
         function getId()
         {
-            return $this->id = $id;
+            return $this->id;
         }
 
         function save()
@@ -60,6 +60,21 @@
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM students;");
+        }
+
+        static function find($search_id)
+        {
+            $returned_students = $GLOBALS['DB']->query("SELECT * FROM students WHERE id = {$search_id};");
+            $found_student = null;
+            foreach($returned_students as $student) {
+                $name = $student['name'];
+                $enrollment_date = $student['enrollment_date'];
+                $id = $student['id'];
+                $found_student = new Student($name, $enrollment_date, $id);
+            }
+
+            return $found_student;
+
         }
 
 
