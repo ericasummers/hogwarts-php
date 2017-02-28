@@ -20,6 +20,7 @@
         protected function tearDown()
         {
             Course::deleteAll();
+            Student::deleteAll();
         }
 
         function testGetName()
@@ -126,6 +127,49 @@
 
             //Assert
             $this->assertEquals([$test_course], Course::getAll());
+        }
+
+        function test_AddAndGetStudents()
+        {
+            $name = "Defense Against the Dark Arts";
+            $test_course = new Course($name);
+            $test_course->save();
+
+            $name = "Harry Potter";
+            $enrollment_date = "2/02/2000";
+            $test_student = new Student($name, $enrollment_date);
+            $test_student->save();
+
+            $name2 = "Hermione Granger";
+            $enrollment_date2 = "04/01/2000";
+            $test_student2 = new Student($name2, $enrollment_date2);
+            $test_student2->save();
+
+            $test_course->addStudent($test_student);
+
+            $this->assertEquals($test_course->getStudents(), [$test_student]);
+        }
+
+        function test_GetStudents()
+        {
+            $name = "Defense Against the Dark Arts";
+            $test_course = new Course($name);
+            $test_course->save();
+
+            $name = "Harry Potter";
+            $enrollment_date = "2/02/2000";
+            $test_student = new Student($name, $enrollment_date);
+            $test_student->save();
+
+            $name2 = "Hermione Granger";
+            $enrollment_date2 = "04/01/2000";
+            $test_student2 = new Student($name2, $enrollment_date2);
+            $test_student2->save();
+
+            $test_course->addStudent($test_student);
+            $test_course->addStudent($test_student2);
+
+            $this->assertEquals($test_course->getStudents(), [$test_student, $test_student2]);
         }
 
 
