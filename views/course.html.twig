@@ -1,0 +1,40 @@
+{% extends "hogwarts_template.html.twig" %}
+
+{% block courses %}
+
+<h1>{{course.getName}}</h1>
+
+    <form action="/add-student" method="post">
+        <input type="hidden" name="course_id" value="{{course.getId}}">
+        <div class="form-group">
+            <label for="name">Student Name:</label>
+            <input type="text" name="name" placeholder="Harry Potter">
+        </div>
+        <div class="form-group">
+            <label for="enrollment_date">Enrollment Date:</label>
+            <input type="text" name="enrollment_date" placeholder="2010/09/01">
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit!</button>
+    </form>
+
+    <a href="/">Back Home</a>
+
+
+
+
+{% endblock %}
+
+{% block students %}
+
+{% if course_students is not empty %}
+    {% for student in course_students %}
+        <ul>
+            <li>{{student.getName}}</li>
+        </ul>
+    {% endfor %}
+{% else %}
+    <p>There are no students for this course yet!</p>
+{% endif %}
+
+{% endblock %}

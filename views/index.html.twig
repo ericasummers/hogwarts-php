@@ -5,7 +5,7 @@
 {% if courses is not empty %}
     {% for course in courses %}
         <ul>
-            <li><a href="/course/{{course.getId}}">{{course.getName}}</a></li>
+            <li><a href="/courses/{{course.getId}}">{{course.getName}}</a></li>
         </ul>
     {% endfor %}
 {% else %}
@@ -26,6 +26,14 @@
 
 {% block students %}
 
-    <p>Here is the students block</p>
+{% if students is not empty %}
+    {% for student in students %}
+        <ul>
+            <li>{{student.getName}}</li>
+        </ul>
+    {% endfor %}
+{% else %}
+    <p>There are no students yet!</p>
+{% endif %}
 
 {% endblock %}

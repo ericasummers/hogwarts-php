@@ -87,7 +87,8 @@
             $all_students = array();
             $queried_students = $GLOBALS['DB']->query("SELECT students.* FROM courses
                 JOIN courses_students ON (courses_students.course_id = courses.id)
-                JOIN students ON (students.id = courses_students.student_id);");
+                JOIN students ON (students.id = courses_students.student_id)
+                WHERE courses.id = {$this->getId()};");
             foreach($queried_students as $student) {
                 $name = $student['name'];
                 $enrollment_date = $student['enrollment_date'];
