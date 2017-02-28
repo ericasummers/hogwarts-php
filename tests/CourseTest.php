@@ -16,11 +16,15 @@
 
     class CourseTest extends PHPUnit_Framework_TestCase
     {
-        function test__()
+        function testGetName()
         {
             //Arrange
-            //Act
-            //Assert
+            $name = "Defense Against the Dark Arts";
+            $test_course = new Course($name);
+
+
+            //Act & Assert
+            $this->assertEquals($test_course->getName(), $name);
         }
 
 
