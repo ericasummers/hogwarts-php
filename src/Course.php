@@ -21,6 +21,11 @@
             $this->name = (string) $new_name;
         }
 
+        function getId()
+        {
+            return $this->id;
+        }
+
         function save()
         {
             $GLOBALS['DB']->exec("INSERT INTO courses (name) VALUES ('{$this->getName()}');");
@@ -45,6 +50,19 @@
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM courses;");
+        }
+
+        static function find($id)
+        {
+            $returned_courses = $GLOBALS['DB']->query("SELECT * FROM courses WHERE id = {$id};");
+            $found_course = null;
+            foreach($returned_courses as $course)
+            {
+                $name = $course['name'];
+                $id = $course['id'];
+                $found_course = new Course($name, $id);
+            }
+            return $found_course;
         }
     }
 

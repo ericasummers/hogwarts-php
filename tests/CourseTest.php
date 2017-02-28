@@ -80,6 +80,24 @@
             $this->assertEquals([], Course::getAll());
         }
 
+        function testFind()
+        {
+            //Arrange
+            $name = "Defense Against the Dark Arts";
+            $test_course = new Course($name);
+            $test_course->save();
+
+            $name2 = "Potions";
+            $test_course2 = new Course($name2);
+            $test_course2->save();
+
+            //Act
+            $result = Course::find($test_course->getId());
+
+            //Assert
+            $this->assertEquals($test_course, $result);
+        }
+
 
     }
 
