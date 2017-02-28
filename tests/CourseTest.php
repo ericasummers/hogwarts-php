@@ -111,6 +111,23 @@
             $this->assertEquals($new_name, $test_course->getName());
         }
 
+        function testDelete()
+        {
+            $name = "Defense Against the Dark Arts";
+            $test_course = new Course($name);
+            $test_course->save();
+
+            $name2 = "Potions";
+            $test_course2 = new Course($name2);
+            $test_course2->save();
+
+            //Act
+            $test_course2->delete();
+
+            //Assert
+            $this->assertEquals([$test_course], Course::getAll());
+        }
+
 
     }
 
