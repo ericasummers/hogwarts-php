@@ -106,6 +106,26 @@
            $this->assertEquals($new_name, $result);
         }
 
+        function testDelete()
+        {
+            //Arrange
+           $name = "Harry Potter";
+           $enrollment_date = "2/02/2000";
+           $test_student = new Student($name, $enrollment_date);
+           $test_student->save();
+
+           $name2 = "Hermione Granger";
+           $enrollment_date2 = "04/01/2000";
+           $test_student2 = new Student($name2, $enrollment_date2);
+           $test_student2->save();
+
+           //Act
+           $test_student->delete();
+           $result = Student::getAll();
+
+           $this->assertEquals([$test_student2], $result);
+        }
+
 
     }
 
