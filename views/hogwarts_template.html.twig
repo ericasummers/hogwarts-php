@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="styles.css" rel="stylesheet" type="text/css">
+        <title>Hogwarts</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Welcome to Hogwarts!</h1>
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="panel">
+                        <div class="panel-body">
+                            {% block courses %}
+                                <h2>Test</h2>
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="panel">
+                        <div class="panel-body">
+                            {% block students %}
+                            <h2>Another Test</h2>
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
