@@ -1,0 +1,33 @@
+{% extends "hogwarts_template.html.twig" %}
+
+{% block courses %}
+
+<h1>{{student.getName}}</h1>
+
+    <h3>Update student:</h3>
+    <form action="/students/{id}" method="post">
+        <input type="hidden" name="_method" value="patch">
+        <div class="form-group">
+            <label for="name">Student Name:</label>
+            <input type="text" name="name" placeholder="Harry Potter">
+        </div>
+        <div class="form-group">
+            <label for="enrollment_date">Enrollment Date:</label>
+            <input type="text" name="enrollment_date" placeholder="2010/09/01">
+        </div>
+
+        <button type="submit" class="btn btn-info">Update!</button>
+    </form>
+
+    <a href="/">Back Home</a>
+
+
+
+
+{% endblock %}
+
+{% block students %}
+
+    <h3>{{student.getName}}</h3>
+
+{% endblock %}
