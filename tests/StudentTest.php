@@ -127,6 +127,31 @@
            $this->assertEquals([$test_student2], $result);
         }
 
+        function testRemoveFromCourse()
+        {
+            //Arrange
+            $name = "Defense Against the Dark Arts";
+            $test_course = new Course($name);
+            $test_course->save();
+
+           $name = "Harry Potter";
+           $enrollment_date = "2/02/2000";
+           $test_student = new Student($name, $enrollment_date);
+           $test_student->save();
+           $test_course->addStudent($test_student);
+
+           $name2 = "Hermione Granger";
+           $enrollment_date2 = "04/01/2000";
+           $test_student2 = new Student($name2, $enrollment_date2);
+           $test_student2->save();
+           $test_course->addStudent($test_student2);
+
+           //Act
+           $test_student->removeFromCourse($test_course->getId());
+
+           $this->assertEquals([$test_student2], $test_course->getStudents());
+        }
+
 
     }
 

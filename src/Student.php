@@ -89,8 +89,10 @@
             $GLOBALS['DB']->exec("DELETE FROM students WHERE id = {$this->getId()};");
         }
 
-
-
+        function removeFromCourse($course_id)
+        {
+            $GLOBALS['DB']->exec("DELETE FROM courses_students WHERE student_id = {$this->getId()} AND course_id = {$course_id};");
+        }
 
 
 
