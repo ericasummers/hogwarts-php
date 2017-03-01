@@ -44,7 +44,7 @@
     <ul>
     {% for student in course_students %}
             <li>{{student.getName}}
-                <form action="/remove-course-student" method="post">
+                <form action="/remove-course-student/{{student.getId}}" method="post">
                     <input type="hidden" name="_method" value="delete">
                     <input type="hidden" name="course_id" value="{{course.getId}}">
                     <button type="submit" class="btn btn-danger">Remove Student from course</button>

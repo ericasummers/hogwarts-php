@@ -67,11 +67,11 @@
 
     $app->delete("/remove-course-student/{id}", function($id) use ($app) {
         $student = Student::find($id);
-        $student->removeFromCourse();
         $course_id = $_POST['course_id'];
         $course = Course::find($course_id);
+        $student->removeFromCourse($course_id);
 
-        return $app['twig']->render('course.html.twig', array('course' => $course, 'course_students' => $course->getStudents(), 'all_students' => Student::getAll()))
+        return $app['twig']->render('course.html.twig', array('course' => $course, 'course_students' => $course->getStudents(), 'all_students' => Student::getAll()));
     });
 
 
