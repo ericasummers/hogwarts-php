@@ -29,7 +29,12 @@
 {% if students is not empty %}
     {% for student in students %}
         <ul>
-            <li>{{student.getName}}</li>
+            <li>{{student.getName}}
+                <form action="/delete-student/{{student.getId}}" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                    <button type="submit" class="btn btn-danger">Delete Student</button>
+                </form>
+            </li>
         </ul>
     {% endfor %}
 {% else %}
